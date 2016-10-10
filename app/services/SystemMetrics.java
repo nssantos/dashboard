@@ -25,7 +25,7 @@ public class SystemMetrics {
 
     public SystemMetrics()  {
         this.nf = NumberFormat.getNumberInstance();
-        this.roots = (List<Path>) FileSystems.getDefault().getRootDirectories();
+        
         this.sigar = new Sigar();
         try {
             this.mem = sigar.getMem();
@@ -57,7 +57,7 @@ public class SystemMetrics {
     public String getDiskFreeSpace() {
         long usable = 0;
         String usableReturn = "";
-        for (Path root : this.roots) {
+        for (Path root : FileSystems.getDefault().getRootDirectories()) {
 
 
             try {
@@ -74,7 +74,7 @@ public class SystemMetrics {
     public String getDiskTotalSpace(){
         long total = 0;
         String totalReturn = "";
-        for (Path root : this.roots) {
+        for (Path root : FileSystems.getDefault().getRootDirectories()) {
 
 
             try {
