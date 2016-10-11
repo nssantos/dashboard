@@ -25,7 +25,7 @@ public class SystemMetrics {
 
     public SystemMetrics()  {
         this.nf = NumberFormat.getNumberInstance();
-        
+
         this.sigar = new Sigar();
         try {
             this.mem = sigar.getMem();
