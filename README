@@ -1,10 +1,8 @@
 # Dashboard
 
 ## Synopsis
-
 An incomplete page app that monitors the disk and memory.
 
 ## API Reference
-
 1. [Materialize](https://github.com/dogfalo/materialize/)
-2. [AngularJS](https://github.com/angular/angular.js)
+2. [Play Framework](https://github.com/playframework/playframework)
