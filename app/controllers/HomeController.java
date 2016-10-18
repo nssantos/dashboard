@@ -1,7 +1,11 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import models.Metrics;
+import play.libs.Json;
 import play.mvc.*;
 
+import play.routing.JavaScriptReverseRouter;
 import services.SystemMetrics;
 import views.html.*;
 
@@ -17,15 +21,32 @@ public class HomeController extends Controller {
      * this method will be called when the application receives a
      * <code>GET</code> request with a path of <code>/</code>.
      */
+
+    public Result javascriptRoutes() {
+        return ok(
+                JavaScriptReverseRouter.create("jsRoutes",
+                        routes.javascript.HomeController.metrics()
+                )
+        ).as("text/javascript");
+    }
+
     public Result index() {
+
+        return ok(index.render("ok"));
+    }
+
+    public Result metrics(){
         SystemMetrics system = new SystemMetrics();
-        String usableSpace = system.getDiskFreeSpace();
-        String totalSpace = system.getDiskTotalSpace();
+        long usableSpace = system.getDiskFreeSpace();
+        long totalSpace = system.getDiskTotalSpace();
         long freeMem = system.getMemFreeSpace();
         long usedMem = system.getMemUsedSpace();
         double freeMemPercent = system.getFreeMemPercent();
         double  usedMemPercent = system.getUsedMemPercent();
-        return ok(index.render("ok", usableSpace, totalSpace, freeMemPercent, usedMemPercent));
+        Metrics metrics = new Metrics(usableSpace, totalSpace, freeMem, usedMem, freeMemPercent, usedMemPercent);
+        JsonNode metricsJson = Json.toJson(metrics);
+
+        return ok(metricsJson);
     }
 
 }

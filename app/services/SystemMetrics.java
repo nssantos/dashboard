@@ -54,37 +54,37 @@ public class SystemMetrics {
         return this.mem.getUsedPercent();
     }
 
-    public String getDiskFreeSpace() {
+    public long getDiskFreeSpace() {
         long usable = 0;
-        String usableReturn = "";
+        //String usableReturn = "";
         for (Path root : FileSystems.getDefault().getRootDirectories()) {
 
 
             try {
                 this.store = Files.getFileStore(root);
                 usable+=this.store.getUsableSpace();
-                usableReturn = nf.format(usable/1000000000);
+                //usableReturn = nf.format(usable/1000000000);
             } catch (IOException e) {
                 System.out.println("error querying space: " + e.toString());
             }
         }
-        return usableReturn;
+        return usable;
     }
 
-    public String getDiskTotalSpace(){
+    public long getDiskTotalSpace(){
         long total = 0;
-        String totalReturn = "";
+        //String totalReturn = "";
         for (Path root : FileSystems.getDefault().getRootDirectories()) {
 
 
             try {
                 this.store = Files.getFileStore(root);
                 total+=this.store.getTotalSpace();
-                totalReturn = nf.format(total/1000000000);
+                //totalReturn = nf.format(total/1000000000);
             } catch (IOException e) {
                 System.out.println("error querying space: " + e.toString());
             }
         }
-        return totalReturn;
+        return total;
     }
 }

@@ -2,7 +2,7 @@
  * This template takes a single argument, a String containing a
  * message to display.
  *@
-@(message: String, diskFreeSpace: String, diskTotalSpace: String, freeMem: Double, usedMem: Double)
+@(message: String)
 @*
  * Call the `main` template with two arguments. The first
  * argument is a `String` with the title of the page, the second
@@ -22,7 +22,7 @@
   <div class="card blue-grey darken-1">
    <div class="card-content white-text">
     <span class="card-title">Disk Free Space</span>
-    <p>@diskFreeSpace GB</p>
+    <p id="free-disk"></p>
    </div>
   </div>
  </div>
@@ -30,7 +30,7 @@
   <div class="card blue-grey darken-1">
    <div class="card-content white-text">
     <span class="card-title">Disk Total Space</span>
-    <p>@diskTotalSpace GB</p>
+    <p id="total-disk"></p>
    </div>
   </div>
  </div>
@@ -41,7 +41,7 @@
   <div class="card blue-grey darken-1">
    <div class="card-content white-text">
     <span class="card-title">Free Memory</span>
-    <p>@freeMem %</p>
+    <p id="free-mem"></p>
    </div>
   </div>
  </div>
@@ -49,10 +49,16 @@
   <div class="card blue-grey darken-1">
    <div class="card-content white-text">
     <span class="card-title">Used Memorye</span>
-    <p>@usedMem %</p>
+    <p id="used-mem"></p>
    </div>
   </div>
  </div>
+ <div id="mem-chart" class="col s12 m12 epoch category10" style="height: 200px; ">
+
+ </div>
+
 </div>
+
+
 
 }
